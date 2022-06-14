@@ -24,7 +24,7 @@ describe("Pokemon Classes", () => {
     test("has hitpoints", () => {
       const pokeOne = new Pokemon("Cheeseface", 20);
       expect(pokeOne.hitPoints >= 30).toBe(true);
-      expect(pokeOne.hitPoints <= 40).toBe(true);
+      expect(pokeOne.hitPoints <= 35).toBe(true);
     });
     test("has attackDamage", () => {
       const pokeOne = new Pokemon("Cheeseface", 20);

@@ -89,5 +89,51 @@ describe("Trainer", () => {
         expect(message).toBe("Bloody full m8!");
       });
     });
+    describe("getPokemon", () => {
+      test("Returns 'No one here by that name m8'", () => {
+        const pokeymen = [
+          new Charmander("James"),
+          new Charmander("Jame"),
+          new Charmander("Jam"),
+          new Squirtle("Ja"),
+          new Charmander("J"),
+          new Charmander("Fred"),
+        ];
+
+        const trainerOne = new Trainer("Guy");
+
+        pokeymen.forEach((pokemon) => {
+          trainerOne.catch(pokemon);
+        });
+
+        expect(trainerOne.getPokemon("Ji")).toBe("No one here by that name m8");
+      });
+      test("gets a pokemon by name", () => {
+        const pokeymen = [
+          new Charmander("James"),
+          new Charmander("Jame"),
+          new Charmander("Jam"),
+          new Squirtle("Ja"),
+          new Charmander("J"),
+          new Charmander("Fred"),
+        ];
+
+        const trainerOne = new Trainer("Guy");
+
+        pokeymen.forEach((pokemon) => {
+          trainerOne.catch(pokemon);
+        });
+
+        expect(trainerOne.getPokemon("Ja")).toEqual(
+          expect.objectContaining({
+            type: "water",
+            hitPoints: expect.any(Number),
+            attackDamage: expect.any(Number),
+            move: "water gun",
+            name: "Ja",
+          })
+        );
+      });
+    });
   });
 });

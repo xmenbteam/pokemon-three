@@ -2,8 +2,8 @@ const { statMaker } = require("../utils/utils");
 
 class Pokemon {
   type = "normal";
-  hitPoints = statMaker(30, 40);
-  attackDamage = statMaker(3, 6);
+  hitPoints;
+  attackDamage;
   move = "tackle";
 
   isEffectiveAgainst() {
@@ -26,8 +26,10 @@ class Pokemon {
     }
     return false;
   }
-  constructor(name) {
+  constructor(name, HP, AD) {
     this.name = name;
+    this.hitPoints = HP || statMaker(30, 35);
+    this.attackDamage = AD || statMaker(3, 6);
   }
 }
 

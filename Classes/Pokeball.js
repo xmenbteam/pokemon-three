@@ -32,6 +32,7 @@ class Pokeball {
       }
     } else {
       console.log(`Go! ${this.#storedPokemon.name}!`);
+      return this.#storedPokemon;
     }
   }
 }
