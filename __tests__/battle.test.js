@@ -19,6 +19,7 @@ describe("Battle", () => {
     pokeymenOne.forEach((pokemon) => {
       trainerOne.catch(pokemon);
     });
+
     const pokeymenTwo = [
       new Squirtle("Dave"),
       new Bulbasaur("Dav"),
@@ -66,22 +67,48 @@ describe("Battle", () => {
       const testBattle = new Battle(trainerOne, trainerTwo);
 
       const actual = testBattle.fight("James", "Dave");
-      const expected = `James attacked Dave and dealt 4 damage! It wasn't very effective...`;
+      const expected = `James attacked Dave and dealt 3 damage! It wasn't very effective...`;
 
-      expect(pokeTwo.hitPoints).toBe(25);
+      expect(pokeTwo.hitPoints).toBe(27);
       expect(actual).toBe(expected);
     });
     test("Super Effective", () => {
       // James is a charmander, Dave is a squirtle
-      const pokeTwo = trainerTwo.getPokemon("Dave");
+      const pokeTwo = trainerTwo.getPokemon("Da");
 
       const testBattle = new Battle(trainerOne, trainerTwo);
 
-      const actual = testBattle.fight("Dave", "James");
-      const expected = `James attacked Dave and dealt 4 damage! It was super effective!!`;
+      const actual = testBattle.fight("Jame", "Da");
 
-      expect(pokeTwo.hitPoints).toBe(28);
+      const expected = `Jame attacked Da and dealt 6 damage! It was Super Effective!!`;
+
+      expect(pokeTwo.hitPoints).toBe(24);
       expect(actual).toBe(expected);
+    });
+    test("Turn alternates", () => {
+      const testBattle = new Battle(trainerOne, trainerTwo);
+      expect(testBattle.trainerOneTurn).toBe(true);
+      testBattle.fight("Jame", "Da");
+      expect(testBattle.trainerOneTurn).toBe(false);
+      testBattle.fight("Da", "James");
+      expect(testBattle.trainerOneTurn).toBe(true);
+    });
+    test("Pokemon faints", () => {
+      // jame is squirtle, da is charmander
+      const testBattle = new Battle(trainerOne, trainerTwo);
+      testBattle.fight("Jame", "Da");
+      testBattle.fight("Da", "Jame");
+      testBattle.fight("Jame", "Da");
+      testBattle.fight("Da", "Jame");
+      testBattle.fight("Jame", "Da");
+      testBattle.fight("Da", "Jame");
+      testBattle.fight("Jame", "Da");
+      testBattle.fight("Da", "Jame");
+      testBattle.fight("Jame", "Da");
+      testBattle.fight("Da", "Jame");
+      testBattle.fight("Jame", "Da");
+      const pokeOne = trainerTwo.getPokemon("Da");
+      expect(pokeOne.hasFainted()).toBe(true);
     });
   });
 });

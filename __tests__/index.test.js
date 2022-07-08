@@ -22,7 +22,7 @@ describe("Pokemon Classes", () => {
       expect(pokeOne.type).toBe("normal");
     });
     test("has hitpoints", () => {
-      const pokeOne = new Pokemon("Cheeseface", 20);
+      const pokeOne = new Pokemon("Cheeseface", 32);
       expect(pokeOne.hitPoints >= 30).toBe(true);
       expect(pokeOne.hitPoints <= 35).toBe(true);
     });
@@ -163,6 +163,10 @@ describe("Pokemon Classes", () => {
     test("Charmander has 'ember'", () => {
       const flamey = new Charmander("Dave");
       expect(flamey.move).toBe("ember");
+    });
+    test("Custom HP", () => {
+      const flamey = new Charmander("Dave", 5);
+      expect(flamey.hitPoints).toBe(5);
     });
     test("Squirtle has 'water gun'", () => {
       const squirty = new Squirtle("Dave");

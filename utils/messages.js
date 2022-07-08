@@ -12,6 +12,9 @@ class Messages {
 
     return message;
   }
+  static faintMessage(pokeOneName) {
+    return `\n \n${pokeOneName} fainted!`;
+  }
 }
 
 module.exports = Messages;
