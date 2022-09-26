@@ -9,5 +9,8 @@
   "scripts": {
     "test": "jest",
     "tscw": "tsc --watch"
+  },
+  "dependencies": {
+    "inquirer": "8"
   }
 }
